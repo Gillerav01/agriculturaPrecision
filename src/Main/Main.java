@@ -1,5 +1,6 @@
 package Main;
 
+import static Utilidades.Menus.menuLogin;
 import java.util.Scanner;
 
 public class Main {
@@ -7,11 +8,8 @@ public class Main {
         Scanner in = new Scanner (System.in);
         int opcion = -1;
         do {
-        
-            
-            System.out.println("----------------------------------------------------------" + "\n"
-                             + "----------------------Menú principal----------------------" + "\n" 
-                             + "----------------------------------------------------------"); 
+            menuLogin();
+            System.out.print(" Introduzca la opción deseada: ");
             opcion = in.nextInt();
         } while(opcion != 0);
 
