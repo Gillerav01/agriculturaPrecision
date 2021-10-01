@@ -165,5 +165,19 @@ public class Agricultor {
             }
         return null;
     }
-    
+        
+        public static Dron buscarDron (int idDron, Lista<Dron> l) {
+            Dron ret = null;
+            Nodo aux = l.getPrim();
+        
+            while(aux != null) {
+                Dron d = (Dron) aux.getInfo(); 
+                if (d.getIdDron() == idDron) {
+                        ret = d;
+                        return ret;
+                    }
+                aux = aux.getSig();
+                }
+            return null;
+        }
 }

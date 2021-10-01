@@ -26,7 +26,26 @@ public class Main {
         drones.añadir(d1);
         drones.añadir(d2);
         drones.añadir(d3);
-
+        
+        Lista<Punto> lp1 = new Lista();
+        Punto p1 = new Punto(32, 439, 32);
+        Punto p2 = new Punto(12, 428, 125);
+        Punto p3 = new Punto(76, 405, 7);
+        Punto p4 = new Punto(543, 906, 23);
+        Punto p5 = new Punto(102, 207, 76);
+        Punto p6 = new Punto(45, 494, 10);
+        
+        lp1.añadir(p1);
+        lp1.añadir(p2);
+        lp1.añadir(p3);
+        lp1.añadir(p4);
+        lp1.añadir(p5);
+        lp1.añadir(p6);
+        
+        Lista<Parcela> parcelas = new Lista();
+        Parcela p = new Parcela(1, 500, 1, lp1);
+        parcelas.añadir(p);
+        
         Scanner in;
         int opcion = -1;
 
@@ -61,8 +80,13 @@ public class Main {
                                    drones.añadir(n);
                                    break;
                                case 2:
+                                   Dron b = Agricultor.buscarDron(agricultorLogueado.getIdDron(), drones);
+                                   System.out.println("El dron registrado para el Agricultor " + agricultorLogueado.getNombre() 
+                                                    + " es el dron con la ID " + agricultorLogueado.getIdDron() + 
+                                                      " y el modelo es: " + b.getModeloDron());
                                    break;
                                case 3:
+                                   Parcela.crearParcela(agricultorLogueado.getIdAgricultor());
                                    break;
                                case 4:
                                    break;

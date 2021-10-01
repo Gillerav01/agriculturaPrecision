@@ -50,7 +50,6 @@ public class Dron {
         modelo = in.nextLine();
         nuevo.setModeloDron(modelo);
         return nuevo;
-    }
-    
+    }    
     
 }
