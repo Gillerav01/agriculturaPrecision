@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Scanner;
+
 public class Dron {
     private int idDron;
     private String modeloDron;
@@ -33,5 +35,22 @@ public class Dron {
     public String toString() {
         return "Este dron tiene la ID: " + idDron + ". El modelo del dron es: " + modeloDron;
     }
+    
+    public static Dron crearDron(){
+        Scanner in;
+        Dron nuevo = new Dron();
+        int id = 0;
+        String modelo = "";
+        System.out.println("Introduzca el ID del dron: ");
+        in = new Scanner (System.in);
+        id = in.nextInt();
+        nuevo.setIdDron(id);
+        System.out.println("Introduzca la marca del dron: ");
+        in = new Scanner (System.in);
+        modelo = in.nextLine();
+        nuevo.setModeloDron(modelo);
+        return nuevo;
+    }
+    
     
 }

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Agricultor {
     
+    private int idAgricultor;
     private String dni;
     private String nombre;
     private String apellido;
@@ -20,7 +21,8 @@ public class Agricultor {
     public Agricultor() {
     }
 
-    public Agricultor(String dni, String nombre, String apellido, String contrasena) {
+    public Agricultor(int idAgricultor, String dni, String nombre, String apellido, String contrasena) {
+        this.idAgricultor = idAgricultor;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -29,6 +31,14 @@ public class Agricultor {
         this.tareasRealizadas = new Lista();
     }
 
+    public int getIdAgricultor() {
+        return idAgricultor;
+    }
+
+    public void setIdAgricultor(int idAgricultor) {
+        this.idAgricultor = idAgricultor;
+    }
+    
     public String getDni() {
         return dni;
     }
@@ -95,10 +105,13 @@ public class Agricultor {
         Agricultor n = new Agricultor();
         
         Scanner in = new Scanner(System.in);
+        int id = 0;
         String dni = "", nombre = "", apellido = "",  contrasena = "";
         System.out.println("|-------------------------------------");
         System.out.println("|------ Bienvenido al registro ------|");
         System.out.println("|-------------------------------------");
+        System.out.println("Introduzca el ID: ");
+        
         System.out.print(" Introduzca su DNI: ");
         dni = in.nextLine();
         System.out.print(" Introduzca su nombre: ");
@@ -137,28 +150,20 @@ public class Agricultor {
         }
         return false;
     };
-}
-
-/* 
-
-    public static boolean iniciarSesion(String DNI, String Contrasena, Lista<Agricultor> lista){
-        Nodo aux = lista.getPrim();
+    
+        public static Agricultor seleccionarAgricultor(String DNI, Lista<Agricultor> l) {
+        Agricultor ret = null;
+        Nodo aux = l.getPrim();
+        
         while(aux != null) {
-            Agricultor a = (Agricultor) aux.getInfo();
-            
+            Agricultor a = (Agricultor) aux.getInfo(); 
             if (a.getDni().equals(DNI)) {
-                if (a.getContrasena().equals(Contrasena)) {
-                    return true;
-                } else {
-                    System.out.println("Contraseña no encontrada.");
+                    ret = a;
+                    return ret;
                 }
-            } else {
-                System.out.println("DNI no encontrado.");
-            }
             aux = aux.getSig();
-            
-        }
-        return false;
-    };
-
-*/
+            }
+        return null;
+    }
+    
+}

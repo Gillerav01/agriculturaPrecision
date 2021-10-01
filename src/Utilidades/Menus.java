@@ -19,6 +19,20 @@ public class Menus {
                                          + "|---------------------------------------------------------|" + "\n");
     };
     
+    public static void menuAgricultor(){
+        System.out.println("|---------------------------------------------------------|" + "\n"
+                         + "|--------------------- Menú principal --------------------|" + "\n" 
+                         + "|---------------------------------------------------------|" + "\n"
+                         + "| 1. Registrar dron                                       |" + "\n"
+                         + "| 2. Ver mi dron                                          |" + "\n"
+                         + "| 3. Registrar parcelas                                   |" + "\n"
+                         + "| 4. Eliminar parcela                                     |" + "\n"
+                         + "| 5. Ver mis parcelas                                     |" + "\n"
+                         + "| 6. Registrar trabajo                                    |" + "\n"
+                         + "| 7. Ver los trabajos realizados                          |" + "\n"
+                         + "|---------------------------------------------------------|");
+    }
+    
     
     
 }
