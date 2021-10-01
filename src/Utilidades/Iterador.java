@@ -2,22 +2,22 @@ package Utilidades;
 
 public class Iterador<T> {
     
-    private ListaFinal lista;
+    private Lista lista;
     private Nodo<T> actual;
 
     public Iterador() {
     }
 
-    public Iterador(ListaFinal lista) {
+    public Iterador(Lista lista) {
         this.lista = lista;
         this.actual = lista.getPrim();
     }
 
-    public ListaFinal getLista() {
+    public Lista getLista() {
         return lista;
     }
 
-    public void setLista(ListaFinal lista) {
+    public void setLista(Lista lista) {
         this.lista = lista;
     }
 

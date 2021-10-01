@@ -1,8 +1,11 @@
 package Entidades;
 
 import Utilidades.Cola;
+import Utilidades.Iterador;
 import Utilidades.Lista;
 import Utilidades.ListaFinal;
+import Utilidades.Nodo;
+import java.util.Scanner;
 
 public class Agricultor {
     
@@ -17,14 +20,13 @@ public class Agricultor {
     public Agricultor() {
     }
 
-    public Agricultor(String dni, String nombre, String apellido, String contrasena, Cola colaTareas, Lista tareasRealizadas, int idDron) {
+    public Agricultor(String dni, String nombre, String apellido, String contrasena) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
-        this.colaTareas = colaTareas;
-        this.tareasRealizadas = tareasRealizadas;
-        this.idDron = idDron;
+        this.colaTareas = new Cola();
+        this.tareasRealizadas = new Lista();
     }
 
     public String getDni() {
@@ -87,4 +89,76 @@ public class Agricultor {
     public String toString() {
         return "El agricultor " + nombre +" "+ apellido + " con DNI " + dni + "posee el siguiente Dron: " + idDron;
     }
+    
+    public static Agricultor registrar(){
+    
+        Agricultor n = new Agricultor();
+        
+        Scanner in = new Scanner(System.in);
+        String dni = "", nombre = "", apellido = "",  contrasena = "";
+        System.out.println("|-------------------------------------");
+        System.out.println("|------ Bienvenido al registro ------|");
+        System.out.println("|-------------------------------------");
+        System.out.print(" Introduzca su DNI: ");
+        dni = in.nextLine();
+        System.out.print(" Introduzca su nombre: ");
+        nombre = in.nextLine();
+        System.out.print(" Introduzca su apellido: ");
+        apellido = in.nextLine();
+        System.out.print(" Introduzca su contraseña: ");
+        contrasena = in.nextLine();
+        n.setNombre(nombre);
+        n.setApellido(apellido);
+        n.setDni(dni);
+        n.setContrasena(contrasena);
+        
+        return n;
+    }
+    
+    public static boolean iniciarSesion(String DNI, String Contrasena, Lista<Agricultor> lista){
+        boolean dniEncontrado = false, contrasenaEncontrada = false;
+        Nodo aux = lista.getPrim();
+        while(aux != null) {
+            Agricultor a = (Agricultor) aux.getInfo();   
+            if (a.getDni().equals(DNI)) {
+                dniEncontrado = true;
+                if (a.getContrasena().equals(Contrasena)) {
+                    contrasenaEncontrada = true;
+                    return true;
+                }
+            }
+            aux = aux.getSig();
+        }
+        
+        if (!dniEncontrado) {
+            System.out.println("Esa combinacion de usuario y contraseña es incorrecta.");
+        } else if (dniEncontrado && !contrasenaEncontrada) {
+            System.out.println("La contraseña no es correcta.");
+        }
+        return false;
+    };
 }
+
+/* 
+
+    public static boolean iniciarSesion(String DNI, String Contrasena, Lista<Agricultor> lista){
+        Nodo aux = lista.getPrim();
+        while(aux != null) {
+            Agricultor a = (Agricultor) aux.getInfo();
+            
+            if (a.getDni().equals(DNI)) {
+                if (a.getContrasena().equals(Contrasena)) {
+                    return true;
+                } else {
+                    System.out.println("Contraseña no encontrada.");
+                }
+            } else {
+                System.out.println("DNI no encontrado.");
+            }
+            aux = aux.getSig();
+            
+        }
+        return false;
+    };
+
+*/
