@@ -18,7 +18,7 @@ public class Parcela {
         this.idParcela = idParcela;
         this.Area = Area;
         this.idAgricultor = idAgricultor;
-        this.listaPuntos = null;
+        this.listaPuntos = listaPuntos;
     }
 
     public int getIdParcela() {
@@ -72,7 +72,7 @@ public class Parcela {
         System.out.println("Introduzca el Area de la parcela: ");
         in = new Scanner(System.in);
         area = in.nextInt();
-        ret.setIdParcela(area);
+        ret.setArea(area);
         for (int i = 1; i < 7; i++){
             Punto p = new Punto();
             System.out.println("Introduzca la X del punto numero " + i + " de 6.");
@@ -90,7 +90,23 @@ public class Parcela {
         return ret;
     }
     
-    public static Parcela buscarParcela (int idAgricultor, Lista<Parcela> l) {
+        public static Lista buscarParcelas (int idAgricultor, Lista<Parcela> l) {
+                Parcela parcela = null;
+                Nodo aux = l.getPrim();
+                Lista ret = new Lista();
+        
+            while(aux != null) {
+                Parcela p = (Parcela) aux.getInfo(); 
+                if (p.getIdAgricultor() == idAgricultor) {
+                        parcela = p;
+                        ret.añadir(parcela);
+                    }
+                aux = aux.getSig();
+                }
+            return ret;
+        }
+    
+    public static Parcela buscarParcela (int idAgricultor, int idParcela, Lista<Parcela> l) {
                 Parcela ret = null;
                 Nodo aux = l.getPrim();
         

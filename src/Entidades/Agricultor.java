@@ -104,22 +104,28 @@ public class Agricultor {
     
         Agricultor n = new Agricultor();
         
-        Scanner in = new Scanner(System.in);
+        Scanner in;
         int id = 0;
         String dni = "", nombre = "", apellido = "",  contrasena = "";
         System.out.println("|-------------------------------------");
         System.out.println("|------ Bienvenido al registro ------|");
         System.out.println("|-------------------------------------");
-        System.out.println("Introduzca el ID: ");
-        
+        System.out.print(" Introduzca el ID: ");
+        in = new Scanner(System.in);
+        id = in.nextInt();
         System.out.print(" Introduzca su DNI: ");
+        in = new Scanner(System.in);
         dni = in.nextLine();
         System.out.print(" Introduzca su nombre: ");
+        in = new Scanner(System.in);
         nombre = in.nextLine();
         System.out.print(" Introduzca su apellido: ");
+        in = new Scanner(System.in);
         apellido = in.nextLine();
         System.out.print(" Introduzca su contraseña: ");
+        in = new Scanner(System.in);
         contrasena = in.nextLine();
+        n.setIdAgricultor(id);
         n.setNombre(nombre);
         n.setApellido(apellido);
         n.setDni(dni);

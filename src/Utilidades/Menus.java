@@ -30,6 +30,8 @@ public class Menus {
                          + "| 5. Ver mis parcelas                                     |" + "\n"
                          + "| 6. Registrar trabajo                                    |" + "\n"
                          + "| 7. Ver los trabajos realizados                          |" + "\n"
+                         + "| 8. Ver pila de tareas actual                            |" + "\n"
+                         + "| 9. Ejecutar pila de tareas                              |" + "\n"
                          + "|---------------------------------------------------------|");
     }
     
