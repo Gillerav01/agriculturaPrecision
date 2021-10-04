@@ -67,5 +67,34 @@ public class Pila<T> {
         }
         System.out.println( "\n" + " --------------------" + "\n");
     }
+        
+        public int length () {
+        int ret = 0;
+        Nodo aux = this.getCima();
+        
+        while (aux != null) {
+            ret++;
+            aux = aux.getSig();
+        }
+        return ret;
+    }
+        
+        public boolean borrar (T x) {
+            Nodo<T> aux = cima;
+            Nodo<T> ant = null;
+            boolean encontrado = false;
+                while (aux != null) {
+                    if (aux.getInfo() == x){
+                        if (ant == null){
+                            this.cima = aux.getSig();
+                        } else {
+                        ant.setSig(aux.getSig());
+                        }
+                        encontrado = true;
+                    } else ant = aux;
+                    aux = aux.getSig();
+            }
+            return encontrado;  
+        }
     
 }

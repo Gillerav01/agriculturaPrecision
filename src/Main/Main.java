@@ -4,12 +4,13 @@ import Entidades.*;
 import static Entidades.Agricultor.registrar;
 import Utilidades.*;
 import static Utilidades.Menus.*;
+import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         String seguir = "";
         Lista<Agricultor> agricultores = new Lista();
         Agricultor a1 = new Agricultor(1, "21141255T", "Guillermo", "Illera", "abc123.");
@@ -76,6 +77,8 @@ public class Main {
                         Agricultor agricultorLogueado = Agricultor.seleccionarAgricultor(DNI, agricultores);
                         in = new Scanner(System.in);
                         seguir = in.nextLine();
+                        Pila<Tarea> tareas = new Pila();
+                        Lista<Tarea> tareasTerminadas = new Lista();
                         do {
                             menuAgricultor();
                             in = new Scanner(System.in);
@@ -90,6 +93,7 @@ public class Main {
                                 case 2:
                                     System.out.println(Agricultor.buscarDron(agricultorLogueado.getIdDron(), drones));
                                     in = new Scanner(System.in);
+                                    System.out.println("Pulse enter para continuar");
                                     seguir = in.nextLine();
                                     break;
                                 case 3:
@@ -120,10 +124,38 @@ public class Main {
                                     Parcela.buscarParcelas(agricultorLogueado.getIdAgricultor(), parcelas).leer();
                                     break;
                                 case 6:
+                                    in = new Scanner(System.in);
+                                    System.out.print("¿Cuantos trabajos quieres añadir? ");
+                                    numero = in.nextInt();
+                                    for (int i = 1; i < (numero + 1); i++) {
+                                        System.out.println("Añadiendo trabajo numero " + i);
+                                        tareas.push(Tarea.registrarTarea((tareas.length() + 1), agricultorLogueado.getIdDron(), agricultorLogueado.getIdAgricultor()));
+                                    }
+                                    System.out.println("Trabajo(s) añadido(s) con exito. Pulse enter para continuar.");
+                                    seguir = in.nextLine();
                                     break;
                                 case 7:
+                                    tareas.leer();
                                     break;
                                 case 8:
+                                    
+                                    break;
+                                case 9:
+                                    tareasTerminadas.leer();
+                                    break;
+                                case 10:
+                                    System.out.println(" |--------------------------------------------------|");
+                                    System.out.println(" |                   Tus tareas                     |");
+                                    System.out.println(" |--------------------------------------------------|");
+                                    tareas.leer();
+                                    System.out.println(" |--------------------------------------------------|");
+                                    System.out.println("Introduzca el ID de la tarea a borrar: ");
+                                    int idTareaBorrar = 0;
+                                    in = new Scanner (System.in);
+                                    idTareaBorrar = in.nextInt();
+                                    Tarea.borrarTarea(idTareaBorrar, tareas);
+                                    System.out.println("Tarea borrada con exito. Pulse enter para continuar.");
+                                    seguir = in.nextLine();
                                     break;
                                 default:
                                     break;
