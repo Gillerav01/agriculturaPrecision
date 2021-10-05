@@ -77,4 +77,42 @@ public class Cola<T> {
         return ret;
     }
     
+    public void leer () {
+        Nodo<T> aux = primero;
+        System.out.println( "\n" + " --------------------" + "\n");
+        while (aux != null) {
+            System.out.println(aux.getInfo());
+            aux = aux.getSig();
+        }
+        System.out.println( "\n" + " --------------------" + "\n");
+    }
+        public int length () {
+        int ret = 0;
+        Nodo aux = this.primero;
+        
+        while (aux != null) {
+            ret++;
+            aux = aux.getSig();
+        }
+        return ret;
+    }
+        
+    public boolean borrar (T x) {
+        Nodo<T> aux = primero;
+        Nodo<T> ant = null;
+        boolean encontrado = false;
+            while (aux != null) {
+                if (aux.getInfo() == x){
+                    if (ant == null){
+                        this.primero = aux.getSig();
+                    } else {
+                    ant.setSig(aux.getSig());
+                    }
+                    encontrado = true;
+                } else ant = aux;
+                aux = aux.getSig();
+        }
+        return encontrado;  
+    }
+    
 }

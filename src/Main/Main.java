@@ -77,7 +77,7 @@ public class Main {
                         Agricultor agricultorLogueado = Agricultor.seleccionarAgricultor(DNI, agricultores);
                         in = new Scanner(System.in);
                         seguir = in.nextLine();
-                        Pila<Tarea> tareas = new Pila();
+                        Cola<Tarea> tareas = new Cola();
                         Lista<Tarea> tareasTerminadas = new Lista();
                         do {
                             menuAgricultor();
@@ -129,7 +129,7 @@ public class Main {
                                     numero = in.nextInt();
                                     for (int i = 1; i < (numero + 1); i++) {
                                         System.out.println("Añadiendo trabajo numero " + i);
-                                        tareas.push(Tarea.registrarTarea((tareas.length() + 1), agricultorLogueado.getIdDron(), agricultorLogueado.getIdAgricultor()));
+                                        tareas.encolar(Tarea.registrarTarea((tareas.length() + 1), agricultorLogueado.getIdDron(), agricultorLogueado.getIdAgricultor()));
                                     }
                                     System.out.println("Trabajo(s) añadido(s) con exito. Pulse enter para continuar.");
                                     seguir = in.nextLine();
@@ -138,7 +138,11 @@ public class Main {
                                     tareas.leer();
                                     break;
                                 case 8:
-                                    
+                                    in = new Scanner (System.in);
+                                    int idTrabajar = 0;
+                                    System.out.println("Introduzca la id de la parcela a trabajar: ");
+                                    idTrabajar = in.nextInt();
+                                    tareasTerminadas.concatenar(Tarea.ejecutarTareas(tareas, idTrabajar, parcelas));
                                     break;
                                 case 9:
                                     tareasTerminadas.leer();
@@ -153,7 +157,7 @@ public class Main {
                                     int idTareaBorrar = 0;
                                     in = new Scanner (System.in);
                                     idTareaBorrar = in.nextInt();
-                                    Tarea.borrarTarea(idTareaBorrar, tareas);
+                                    tareas.borrar(Tarea.buscarTarea(idTareaBorrar, tareas));
                                     System.out.println("Tarea borrada con exito. Pulse enter para continuar.");
                                     seguir = in.nextLine();
                                     break;

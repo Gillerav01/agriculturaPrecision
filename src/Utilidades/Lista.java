@@ -83,4 +83,24 @@ public class Lista <T>{
         }
         return encontrado;  
     }
+    
+    public int length () {
+        int ret = 0;
+        Nodo aux = this.getPrim();
+        
+        while (aux != null) {
+            ret++;
+            aux = aux.getSig();
+        }
+        return ret;
+    }
+    
+        public void concatenar(Lista lf) {
+        Nodo<T> aux = lf.prim;
+        while (aux != null) {
+            this.añadir(aux.getInfo());
+            aux = aux.getSig();
+        }
+    }
+    
  }
