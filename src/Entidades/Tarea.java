@@ -145,6 +145,8 @@ public class Tarea {
     public static Lista ejecutarTareas (Cola<Tarea> c, int idParcela, Lista<Parcela> l) throws InterruptedException {
         Nodo<Tarea> aux2 = c.getPrimero();
         Nodo<Parcela> aux = l.getPrim();
+        Scanner cont = new Scanner (System.in);
+        char continuar = ' ';
         Lista ret = new Lista();
         while (aux != null) {
             if (aux.getInfo().getIdParcela() == idParcela){
@@ -157,7 +159,15 @@ public class Tarea {
                     }
                     aux2.getInfo().setRealizado(true);
                     ret.añadir(c.desencolar());
-                    aux2 = aux2.getSig();
+                    System.out.println("¿Desea hacer otro trabajo? (Si / No)");
+                    continuar = cont.nextLine().toLowerCase().charAt(0);
+                    if (continuar == 's') {
+                        aux2 = aux2.getSig();
+                    } else if (continuar == 'n') {
+                        break;
+                    } else {
+                        break;
+                    }
                 }
             }
             aux = aux.getSig();
